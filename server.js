@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 const shortid = require('shortid')
-const notes = require('./db/db.json');
+//const notes = require('./db/db.json');
 
 
 const PORT = 3001;
@@ -83,7 +83,30 @@ app.post('/api/notes', (req, res) => {
     } else {
       res.status(500).json('Error in saving note');
     }
-  });
+});
+
+app.delete('/api/notes/:id', (req, res) => {
+    const queryId = req.params.id
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+        } else {
+        const notesList = JSON.parse(data);
+        for (i=0; i<notesList.length; i++){
+            if (notesList[i].id === queryId){
+                notesList.splice(i, 1)
+            }
+        }
+        fs.writeFile(
+            './db/db.json',
+            JSON.stringify(notesList, null, 4),
+            (writeErr) =>
+              writeErr
+                ? console.error(writeErr)
+                : console.info('Successfully deleted note!')
+          );
+        }})
+})
 
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))

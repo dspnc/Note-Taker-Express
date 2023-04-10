@@ -85,6 +85,9 @@ const handleNoteDelete = (e) => {
   const note = e.target;
   const noteId = JSON.parse(note.parentElement.getAttribute('data-note')).id;
 
+  // hides the created list element for the note from the list
+  hide(note.parentElement)
+
   if (activeNote.id === noteId) {
     activeNote = {};
   }
@@ -92,7 +95,7 @@ const handleNoteDelete = (e) => {
   deleteNote(noteId).then(() => {
     getAndRenderNotes();
     renderActiveNote();
-  });
+  })
 };
 
 // Sets the activeNote and displays it

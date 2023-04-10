@@ -180,4 +180,8 @@ if (window.location.pathname === '/notes') {
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
 
+
+//added if statement to only run getAndRenderNotes on the /notes page
+if (window.location.pathname === '/notes') {
 getAndRenderNotes();
+}

@@ -31,3 +31,7 @@ To reach out directly, please email me at dspence.hill@gmail.com
 
 Here is a link to the deployed app: [heroku-app](https://boiling-cliffs-45912.herokuapp.com/)
 
+Screenshot
+<img title="deployed note taker app" alt="Note Taker express" src="./public/assets/screenshot-of-deploy.png">
+
+
